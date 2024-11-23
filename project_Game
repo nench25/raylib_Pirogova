@@ -1,0 +1,89 @@
+#include "raylib.h"
+
+int main() {
+
+	InitWindow(800, 600, "My Game");
+
+	int playerX = 350, playerY = 500;
+	int playerSize = 50;
+	int playerSpeed = 10;
+	int wall1_X = GetRandomValue(0, 750), wall1_Y = -50, wall1_Height = 50, wall1_Weight = 50, wall1_Speed = 5;
+	int wall2_X = GetRandomValue(0, 750), wall2_Y = -50, wall2_Height = 50, wall2_Weight = 30, wall2_Speed = 10;
+	int wall3_X = GetRandomValue(0, 750), wall3_Y = -50, wall3_Height = 50, wall3_Weight = 20, wall3_Speed = 2;
+	int wall4_X = GetRandomValue(0, 750), wall4_Y = -50, wall4_Height = 50, wall4_Weight = 60, wall4_Speed = 13;
+	int score = 0;
+
+	SetTargetFPS(60);
+
+	while (!WindowShouldClose()) {
+		wall1_Y += wall1_Speed, wall2_Y += wall2_Speed, wall3_Y += wall3_Speed, wall4_Y += wall4_Speed;
+
+		if (wall1_Y > 600) {
+			wall1_Y = -50;
+			wall1_X = GetRandomValue(0, 750);
+			score += 1;
+		}
+		if (wall2_Y > 600) {
+			wall2_Y = -50;
+			wall2_X = GetRandomValue(0, 750);
+			score += 1;
+		}
+		if (wall3_Y > 600) {
+			wall3_Y = -50;
+			wall3_X = GetRandomValue(0, 750);
+			score += 1;
+		}
+		if (wall4_Y > 600) {
+			wall4_Y = -50;
+			wall4_X = GetRandomValue(0, 750);
+			score += 1;
+		}
+
+		if (IsKeyDown(KEY_RIGHT) && playerX < 800 - playerSize) playerX += playerSpeed;
+		if (IsKeyDown(KEY_LEFT) && playerX > 0) playerX -= playerSpeed;
+		if (IsKeyDown(KEY_UP) && playerY > 0) playerY -= playerSpeed;
+		if (IsKeyDown(KEY_DOWN) && playerY < 600 - playerSize) playerY += playerSpeed;
+
+		Rectangle playerRec = { playerX, playerY, playerSize, playerSize };
+		Rectangle wall1_Rec = { wall1_X, wall1_Y, wall1_Height, wall1_Weight };
+		Rectangle wall2_Rec = { wall2_X, wall2_Y, wall2_Height, wall2_Weight };
+		Rectangle wall3_Rec = { wall3_X, wall3_Y, wall3_Height, wall3_Weight };
+		Rectangle wall4_Rec = { wall4_X, wall4_Y, wall4_Height, wall4_Weight };
+
+		if (CheckCollisionRecs(playerRec, wall1_Rec)) {
+			if (IsKeyDown(KEY_RIGHT)) playerX += playerSpeed;
+			if (IsKeyDown(KEY_LEFT)) playerX -= playerSpeed;
+			break;
+		}
+		if (CheckCollisionRecs(playerRec, wall2_Rec)) {
+			if (IsKeyDown(KEY_RIGHT)) playerX += playerSpeed;
+			if (IsKeyDown(KEY_LEFT)) playerX -= playerSpeed;
+			break;
+		}
+		if (CheckCollisionRecs(playerRec, wall3_Rec)) {
+			if (IsKeyDown(KEY_RIGHT)) playerX += playerSpeed;
+			if (IsKeyDown(KEY_LEFT)) playerX -= playerSpeed;
+			break;
+		}
+		if (CheckCollisionRecs(playerRec, wall4_Rec)) {
+			if (IsKeyDown(KEY_RIGHT)) playerX += playerSpeed;
+			if (IsKeyDown(KEY_LEFT)) playerX -= playerSpeed;
+			break;
+		}
+
+		BeginDrawing();
+		ClearBackground(BLACK);
+
+		DrawRectangle(playerX, playerY, playerSize, playerSize, BLUE);
+		DrawRectangle(wall1_X, wall1_Y, wall1_Height, wall1_Weight, RED);
+		DrawRectangle(wall2_X, wall2_Y, wall2_Height, wall2_Weight, ORANGE);
+		DrawRectangle(wall3_X, wall3_Y, wall3_Height, wall3_Weight, WHITE);
+		DrawRectangle(wall4_X, wall4_Y, wall4_Height, wall4_Weight, YELLOW);
+		DrawText(TextFormat("Score: %i", score), 10, 10, 30, WHITE);
+		EndDrawing();
+
+	}
+
+	CloseWindow();
+	return 0;
+}
