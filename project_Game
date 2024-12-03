@@ -1,9 +1,33 @@
 #include "raylib.h"
-
+void questionloop() {
+	bool game = true;
+	while (game) {
+		BeginDrawing();
+		DrawText(TextFormat("10000 + 101011"), 10, 10, 20, BLACK);
+		DrawRectangle(250, 260, 300, 200, RAYWHITE);
+		DrawText(TextFormat("1000 + 1000"), 310, 280, 30, BLACK);
+		EndDrawing();
+		if (IsKeyPressed(KEY_ENTER)) {
+			game = false;
+		}
+	}
+}
+void questionloop2() {
+	bool game2 = true;
+	while (game2) {
+		BeginDrawing();
+		DrawText(TextFormat("100100,10010 -> ?"), 10, 10, 20, BLACK);
+		DrawRectangle(250, 260, 300, 200, RAYWHITE);
+		EndDrawing();
+		if (IsKeyPressed(KEY_ENTER)) {
+			game2 = false;
+		}
+	}
+}
 int main() {
 
 	InitWindow(800, 600, "My Game");
-
+	int screenWidth = 800 / 2, screenHeight = 600 / 2;
 	int playerX = 350, playerY = 500;
 	int playerSize = 50;
 	int playerSpeed = 10;
@@ -53,22 +77,28 @@ int main() {
 		if (CheckCollisionRecs(playerRec, wall1_Rec)) {
 			if (IsKeyDown(KEY_RIGHT)) playerX += playerSpeed;
 			if (IsKeyDown(KEY_LEFT)) playerX -= playerSpeed;
-			break;
+			
+			questionloop();
 		}
 		if (CheckCollisionRecs(playerRec, wall2_Rec)) {
 			if (IsKeyDown(KEY_RIGHT)) playerX += playerSpeed;
 			if (IsKeyDown(KEY_LEFT)) playerX -= playerSpeed;
-			break;
+
+			questionloop2();
 		}
 		if (CheckCollisionRecs(playerRec, wall3_Rec)) {
 			if (IsKeyDown(KEY_RIGHT)) playerX += playerSpeed;
 			if (IsKeyDown(KEY_LEFT)) playerX -= playerSpeed;
-			break;
+			
+			questionloop();
+
 		}
 		if (CheckCollisionRecs(playerRec, wall4_Rec)) {
 			if (IsKeyDown(KEY_RIGHT)) playerX += playerSpeed;
 			if (IsKeyDown(KEY_LEFT)) playerX -= playerSpeed;
-			break;
+
+			questionloop();
+
 		}
 
 		BeginDrawing();
