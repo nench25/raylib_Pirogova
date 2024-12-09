@@ -1,13 +1,22 @@
 #include "raylib.h"
+
 void questionloop() {
 	bool game = true;
 	while (game) {
 		BeginDrawing();
-		DrawText(TextFormat("10000 + 101011"), 10, 10, 20, BLACK);
-		DrawRectangle(250, 260, 300, 200, RAYWHITE);
-		DrawText(TextFormat("1000 + 1000"), 310, 280, 30, BLACK);
+		DrawRectangle(100, 100, 600, 400, RAYWHITE);
+		DrawText(TextFormat("perform the division of numbers"), 120, 120, 30, BLACK);
+		DrawText(TextFormat("in the hexadecimal number system"), 120, 150, 30, BLACK);
+		DrawText(TextFormat("1C4B / 31"), 140, 300, 40, BLACK);
+		DrawText(TextFormat("a) 8D(1D)"), 470, 220, 30, BLACK);
+		DrawText(TextFormat("b) 7(AB)"), 470, 280, 30, BLACK);
+		DrawText(TextFormat("c) 8A(1D)"), 470, 340, 30, BLACK);
+		DrawText(TextFormat("d) 9B(4CA)"), 470, 400, 30, BLACK);
 		EndDrawing();
-		if (IsKeyPressed(KEY_ENTER)) {
+		if (IsKeyDown(KEY_A)) {
+			BeginDrawing();
+			DrawRectangle(470, 210, 170, 50, GREEN);
+			EndDrawing();
 			game = false;
 		}
 	}
@@ -16,11 +25,58 @@ void questionloop2() {
 	bool game2 = true;
 	while (game2) {
 		BeginDrawing();
-		DrawText(TextFormat("100100,10010 -> ?"), 10, 10, 20, BLACK);
+		DrawRectangle(100, 100, 600, 400, RAYWHITE);
+		DrawText(TextFormat("convert the binary code to decimal"), 120, 120, 30, BLACK);
+		DrawText(TextFormat("100100,10010 -> ?"), 140, 300, 30, BLACK);
+		DrawText(TextFormat("a) -17,38"), 470, 220, 30, BLACK);
+		DrawText(TextFormat("b) 36,785"), 470, 280, 30, BLACK);
+		DrawText(TextFormat("c) 36,5625"), 470, 340, 30, BLACK);
+		DrawText(TextFormat("d) 27,3286"), 470, 400, 30, BLACK);
+		EndDrawing();
+		if (IsKeyDown(KEY_A)) {
+			BeginDrawing();
+			DrawRectangle(470, 210, 170, 50, RED);
+			EndDrawing();
+		}
+		if (IsKeyDown(KEY_B)) {
+			BeginDrawing();
+			DrawRectangle(470, 270, 170, 50, RED);
+			EndDrawing();
+		}
+		if (IsKeyDown(KEY_C)) {
+			BeginDrawing();
+			DrawRectangle(470, 330, 170, 50, GREEN);
+			EndDrawing();
+			game2 = false;
+		}
+		if (IsKeyDown(KEY_D)) {
+			BeginDrawing();
+			DrawRectangle(470, 390, 170, 50, RED);
+			EndDrawing();
+		}
+	}
+}
+void questionloop3() {
+	bool game3 = true;
+	while (game3) {
+		BeginDrawing();
 		DrawRectangle(250, 260, 300, 200, RAYWHITE);
+		DrawText(TextFormat(""), 310, 280, 30, BLACK);
 		EndDrawing();
 		if (IsKeyPressed(KEY_ENTER)) {
-			game2 = false;
+			game3 = false;
+		}
+	}
+}
+void questionloop4() {
+	bool game4 = true;
+	while (game4) {
+		BeginDrawing();
+		DrawRectangle(250, 260, 300, 200, RAYWHITE);
+		DrawText(TextFormat(""), 310, 280, 30, BLACK);
+		EndDrawing();
+		if (IsKeyPressed(KEY_ENTER)) {
+			game4 = false;
 		}
 	}
 }
@@ -77,7 +133,7 @@ int main() {
 		if (CheckCollisionRecs(playerRec, wall1_Rec)) {
 			if (IsKeyDown(KEY_RIGHT)) playerX += playerSpeed;
 			if (IsKeyDown(KEY_LEFT)) playerX -= playerSpeed;
-			
+
 			questionloop();
 		}
 		if (CheckCollisionRecs(playerRec, wall2_Rec)) {
@@ -89,15 +145,15 @@ int main() {
 		if (CheckCollisionRecs(playerRec, wall3_Rec)) {
 			if (IsKeyDown(KEY_RIGHT)) playerX += playerSpeed;
 			if (IsKeyDown(KEY_LEFT)) playerX -= playerSpeed;
-			
-			questionloop();
+
+			questionloop3();
 
 		}
 		if (CheckCollisionRecs(playerRec, wall4_Rec)) {
 			if (IsKeyDown(KEY_RIGHT)) playerX += playerSpeed;
 			if (IsKeyDown(KEY_LEFT)) playerX -= playerSpeed;
 
-			questionloop();
+			questionloop4();
 
 		}
 
